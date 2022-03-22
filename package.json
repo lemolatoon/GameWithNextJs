@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "fmt": "prettier --write .",
     "eslint": "npx eslint .",
-    "dev": "npx next dev"
+    "dev": "npx next dev",
+    "commit": "npm run eslint && git commit"
   },
   "repository": {
     "type": "git",
