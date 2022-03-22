@@ -9,7 +9,8 @@
     "eslint": "npx eslint .",
     "dev": "npx next dev",
     "commit": "npm run eslint && git commit",
-    "build": "npx next build"
+    "build": "npx next build",
+    "start": "npx next start"
   },
   "repository": {
     "type": "git",

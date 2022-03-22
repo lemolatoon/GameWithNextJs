@@ -45,16 +45,19 @@ const CustomCanvas: FunctionComponent<Props> = (props) => {
   const [imageURL, setImageURL] = useState<string>();
   const [shouldRefresh, setRefresh] = useState<boolean>(false);
 
+  const width = 1200;
+  const height = 600;
+
   useEffect(() => {
     console.log("useEffect! from canvas.tsx");
     const canv = document.createElement("canvas");
-    canv.width = 1200;
-    canv.height = 1200;
+    canv.width = width;
+    canv.height = height;
 
     const baseCtx = canv.getContext("2d");
     if (baseCtx != null) {
       baseCtx.fillStyle = props.color;
-      baseCtx.fillRect(0, 0, 1200, 1200);
+      baseCtx.fillRect(0, 0, width, height);
     }
 
     const textCtx = canv.getContext("2d");
@@ -63,11 +66,12 @@ const CustomCanvas: FunctionComponent<Props> = (props) => {
       textCtx.font = "50px 'MS　ゴシック'";
       textCtx.textAlign = "left";
       textCtx.textBaseline = "top";
-      textCtx.fillText(`color=${props.color}`, 120, 200, 1200);
+      textCtx.fillText(`color=${props.color}`, 120, 200, width);
     }
 
     console.log(`imageURL is now set, color=${props.color}`);
     setImageURL(canv.toDataURL("image/png"));
+    console.log("imageURL: " + imageURL);
   }, [shouldRefresh]);
 
   const onClickRefresh = () => {
@@ -76,7 +80,13 @@ const CustomCanvas: FunctionComponent<Props> = (props) => {
   return (
     <>
       <button onClick={onClickRefresh}>Reset</button>
-      <Image src={imageURL}></Image>
+      {(() => {
+        if (imageURL != null) {
+          return <Image src={imageURL} width={width} height={height}></Image>;
+        } else {
+          console.log(imageURL);
+        }
+      })()}
     </>
   );
 };
