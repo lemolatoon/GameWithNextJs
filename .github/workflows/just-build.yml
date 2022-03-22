@@ -1,4 +1,4 @@
-name: build
+name: just-build
 
 on:
   push:
