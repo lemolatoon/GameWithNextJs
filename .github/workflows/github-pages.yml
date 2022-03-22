@@ -1,0 +1,24 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: setup dependencies
+        run: npm install
+
+      - name: build
+        run: npm run build
