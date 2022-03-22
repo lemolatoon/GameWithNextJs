@@ -49,7 +49,7 @@ const CustomCanvas: FunctionComponent<Props> = (props) => {
     console.log("useEffect! from canvas.tsx");
     const canv = document.createElement("canvas");
     canv.width = 1200;
-    canv.height = 1200;
+    canv.height = 600;
 
     const baseCtx = canv.getContext("2d");
     if (baseCtx != null) {
