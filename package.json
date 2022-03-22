@@ -8,7 +8,8 @@
     "fmt": "prettier --write .",
     "eslint": "npx eslint .",
     "dev": "npx next dev",
-    "commit": "npm run eslint && git commit"
+    "commit": "npm run eslint && git commit",
+    "build": "npx next build"
   },
   "repository": {
     "type": "git",
