@@ -1,0 +1,37 @@
+{
+  "name": "gamewithnextjs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fmt": "prettier --write .",
+    "eslint": "npx eslint .",
+    "dev": "npx next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemolatoon/GameWithNextJs.git"
+  },
+  "author": "lemolatoon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lemolatoon/GameWithNextJs/issues"
+  },
+  "homepage": "https://github.com/lemolatoon/GameWithNextJs#readme",
+  "dependencies": {
+    "next": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.22",
+    "@types/react": "^17.0.41",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint": "^8.11.0",
+    "eslint-config-next": "^12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "prettier": "^2.6.0",
+    "typescript": "^4.6.2"
+  }
+}
