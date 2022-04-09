@@ -1,4 +1,4 @@
-const MinoType = {
+export const MinoType = {
   I: 0,
   O: 1,
   T: 2,
@@ -8,7 +8,7 @@ const MinoType = {
   Z: 6,
 } as const;
 
-const PixcelColor = {
+export const PixcelColor = {
   I_COLOR: [0x7f, 0xff, 0xd4, 0xff],
   O_COLOR: [0xff, 0xff, 0x00, 0xff],
   T_COLOR: [0x99, 0x32, 0xcc, 0xff],
@@ -19,7 +19,7 @@ const PixcelColor = {
   NONE: [0x80, 0x80, 0x80, 0x80],
 } as const;
 
-const PixcelType = {
+export const PixcelType = {
   I: 0,
   O: 1,
   T: 2,
