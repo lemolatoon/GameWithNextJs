@@ -37,73 +37,58 @@ export const GameCanvas: FunctionComponent = () => {
     const canvas: HTMLCanvasElement = document.getElementById(
       "canvas"
     ) as HTMLCanvasElement;
-  });
-
-  useEffect(() => {
-    const canvas = document.createElement("canvas");
+    setContext(canvas.getContext("2d"));
     canvas.width = width;
     canvas.height = height;
+  }, []);
 
+  useEffect(() => {
     // background---
-    const baseContext = canvas.getContext("2d");
-    if (baseContext != null) {
-      baseContext.fillStyle = "#2f4f4f";
-      baseContext.fillRect(0, 0, width, height);
+    if (context != null) {
+      context.fillStyle = "#2f4f4f";
+      context.fillRect(0, 0, width, height);
     }
 
-    const underlyingContext = canvas.getContext("2d");
-    if (underlyingContext != null) {
-      underlyingContext.fillStyle = "gray";
-      underlyingContext.fillRect(
-        startX,
-        startY,
-        backgroundWidth,
-        backgroundHeight
-      );
+    if (context != null) {
+      context.fillStyle = "gray";
+      context.fillRect(startX, startY, backgroundWidth, backgroundHeight);
     }
     // -------------
 
     // write line
-    const blockContext = canvas.getContext("2d");
-    const blockImageData = blockContext.getImageData(
-      boardStartX,
-      boardStartY,
-      boardWidth,
-      boardHeight
-    );
-    if (blockContext != null) {
+    if (context != null) {
+      const blockImageData = context.getImageData(
+        boardStartX,
+        boardStartY,
+        boardWidth,
+        boardHeight
+      );
       const pixcel = blockImageData.data;
       for (let i = 0; i < boardWidth; i++) {
         for (let j = 0; j < boardHeight; j++) {
           for (let k = 0; k < 4; k++) {
             const white = [0xff, 0xff, 0xff, 0xff];
-            const rate = 0.01;
+            const rate = 1 / 20;
             const xCondition =
-              Math.abs((i % blockSize) - blockSize) < blockSize * rate ||
-              Math.abs((i % blockSize) - blockSize) > blockSize * (1 - rate);
+              Math.abs(((i + 1) % blockSize) - blockSize) <= blockSize * rate ||
+              Math.abs(((i + 1) % blockSize) - blockSize) >=
+                blockSize * (1 - rate);
             const yCondition =
-              Math.abs((j % blockSize) - blockSize) < blockSize * rate ||
-              Math.abs((j % blockSize) - blockSize) > blockSize * (1 - rate);
+              Math.abs(((j + 1) % blockSize) - blockSize) <= blockSize * rate ||
+              Math.abs(((j + 1) % blockSize) - blockSize) >=
+                blockSize * (1 - rate);
             if (xCondition || yCondition) {
               pixcel[(i * boardHeight + j) * 4 + k] = white[k];
             }
           }
         }
       }
+      context.putImageData(blockImageData, boardStartX, boardStartY);
     }
-    blockContext.putImageData(blockImageData, boardStartX, boardStartY);
-
-    setImageURL(canvas.toDataURL("image/png"));
   });
   return (
     <>
-      {(() => {
-        if (imageURL != null) {
-          return <Image src={imageURL} width={width} height={height}></Image>;
-        } else {
-          return <h1>now imageURL is null</h1>;
-        }
-      })()}
+      <canvas width={width} height={height} id="canvas"></canvas>
     </>
   );
 };
