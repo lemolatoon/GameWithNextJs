@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import Image from "next/image";
+import { GameCanvas } from "./pixcel_canvas";
 
 export const Canvas: FunctionComponent = () => {
   const [color, setColor] = useState<number>(0);
@@ -13,7 +14,8 @@ export const Canvas: FunctionComponent = () => {
     <>
       <button onClick={onClickColor}>Change Color</button>
       <h2>This is Canvas</h2>
-      <CustomCanvas color={getColorCode(color)}></CustomCanvas>
+      {/* <CustomCanvas color={getColorCode(color)}></CustomCanvas> */}
+      <GameCanvas></GameCanvas>
     </>
   );
 };
