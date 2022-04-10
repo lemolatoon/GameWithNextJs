@@ -18,7 +18,7 @@ export const GameCanvas: FunctionComponent = () => {
   const width = 600;
   const height = 600;
 
-  const blockSize: number = 20;
+  const blockSize = 20;
   const marginX = 5;
   const marginY = 10;
 
